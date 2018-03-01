@@ -22,12 +22,22 @@ keywordMatching = () => {
 registerKeywordListeners = (keyReplacements) => {
     for(var x = 0; x<keyReplacements.length; x++){
         let kw = WORDS.words.map((word) => word.keyword);
-        let km = keywordMatches;
+        var km = keywordMatches;
         let tooltip = WORDS.words[kw.indexOf(km[x].toLowerCase())].message;
         $("#warningId"+x).attr('title', tooltip);
+        // let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
+        // console.log(x);
+        // console.log(keywordMatches);
+        // if(km[x].charAt(0) == keywordMatches[x].charAt(0).toUpperCase()) {
+        //     replace = keywordMatches[x].charAt(0) + keywordMatches[x].slice(1);
+        // }
         document.getElementById("warningId"+x).addEventListener("dblclick", trackAcceptChange);
         document.getElementById("warningId"+x).addEventListener("dblclick", function(){
-            this.innerHTML=keyReplacements[parseInt(this.id.replace("warningId", ""))];
+            //this.innerHTML = replace;
+            let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
+            let innerText = this.textContent;
+            this.innerHTML = processCapitalization(replace, innerText);
+            console.log(this.textContent);
             this.classList.remove("warning");
             this.removeAttribute("title");
         });
@@ -41,6 +51,13 @@ function prepareForCopy(str){
 
 function prepareForDisplay(str){
 return removeBeginningBr(formatLineBreaks(str, "<br>", ["br"]));
+}
+
+processCapitalization = (replace, innerText) => {
+    if(innerText.charAt(0) === innerText.charAt(0).toUpperCase()) {
+        replace = replace.charAt(0).toUpperCase() + replace.slice(1);
+    }
+    return replace;
 }
 
 /**
