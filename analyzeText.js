@@ -25,15 +25,9 @@ registerKeywordListeners = (keyReplacements) => {
         let km = keywordMatches;
         let tooltip = WORDS.words[kw.indexOf(km[x].toLowerCase())].message;
         $("#warningId"+x).attr('title', tooltip);
-        // let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
-        // console.log(x);
-        // console.log(keywordMatches);
-        // if(km[x].charAt(0) == keywordMatches[x].charAt(0).toUpperCase()) {
-        //     replace = keywordMatches[x].charAt(0) + keywordMatches[x].slice(1);
-        // }
+        
         document.getElementById("warningId"+x).addEventListener("dblclick", trackAcceptChange);
         document.getElementById("warningId"+x).addEventListener("dblclick", function(){
-            //this.innerHTML = replace;
             let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
             let innerText = this.textContent;
             this.innerHTML = processCapitalization(replace, innerText);
