@@ -22,7 +22,7 @@ keywordMatching = () => {
 registerKeywordListeners = (keyReplacements) => {
     for(var x = 0; x<keyReplacements.length; x++){
         let kw = WORDS.words.map((word) => word.keyword);
-        var km = keywordMatches;
+        let km = keywordMatches;
         let tooltip = WORDS.words[kw.indexOf(km[x].toLowerCase())].message;
         $("#warningId"+x).attr('title', tooltip);
         // let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
