@@ -31,7 +31,6 @@ registerKeywordListeners = (keyReplacements) => {
             let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
             let innerText = this.textContent;
             this.innerHTML = processCapitalization(replace, innerText);
-            console.log(this.textContent);
             this.classList.remove("warning");
             this.removeAttribute("title");
         });
@@ -47,6 +46,7 @@ function prepareForDisplay(str){
 return removeBeginningBr(formatLineBreaks(str, "<br>", ["br"]));
 }
 
+//Preserves original first letter capitalization
 processCapitalization = (replace, innerText) => {
     if(innerText.charAt(0) === innerText.charAt(0).toUpperCase()) {
         replace = replace.charAt(0).toUpperCase() + replace.slice(1);
