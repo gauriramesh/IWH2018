@@ -19,11 +19,11 @@ function textFormatter () {
 	* Replaces html with the proper line break encoding in the proper spots
 	*/
 	self.formatLineBreaks = (str, lineBreak, exclusions) => {
-		let removeNewLines = str.replace(/\r?\n|\r/g, "");
-		let removeDivDiv = removeNewLines.replace(/<div><div>/g, lineBreak);
-		let removeDiv = removeDivDiv.replace(/<div><\/div>/g, "").replace(/<div>(<br>)?/g, lineBreak);
-		let removeP = removeDiv.replace(/<p><\/p>/g, "").replace(/<\/p>/g, lineBreak);
-		let removeBr = removeP.replace(/<br>/g, lineBreak);
+		const removeNewLines = str.replace(/\r?\n|\r/g, "");
+		const removeDivDiv = removeNewLines.replace(/<div><div>/g, lineBreak);
+		const removeDiv = removeDivDiv.replace(/<div><\/div>/g, "").replace(/<div>(<br>)?/g, lineBreak);
+		const removeP = removeDiv.replace(/<p><\/p>/g, "").replace(/<\/p>/g, lineBreak);
+		const removeBr = removeP.replace(/<br>/g, lineBreak);
 		return self.removeCode(removeBr, exclusions).replace(/&nbsp;/g, " ");
 	}
 
@@ -46,10 +46,10 @@ function textFormatter () {
 	* Doesn't remove tags specified to be excluded in exclusions
 	*/
 	self.removeCode = (str, exclusions) => {
-		if(exclusions == null){
+		if(exclusions == null ){
 			return str.replace(/<[^>]*>/g, "");
 		}
-		var pattern = "<(?!" + exclusions.join(")[^>]*>|<(?!") + ")[^>]*>";
+		const pattern = "<(?!" + exclusions.join(")[^>]*>|<(?!") + ")[^>]*>";
 		return str.replace(new RegExp(pattern, "g"), "");
 	}
 }
