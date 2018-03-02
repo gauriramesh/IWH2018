@@ -1,6 +1,7 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
 		if($(document.activeElement).attr("contenteditable")){
+			var inputBox = document.activeElement;
 			sendResponse({
 				messageText: $(document.activeElement).html(),
 				showButtons: true
@@ -11,13 +12,13 @@ chrome.runtime.onMessage.addListener(
 				showButtons: false
 				});
 		}
-});
 
-var port = chrome.runtime.connect({name: "knockknock"});
-port.postMessage({joke: "Knock knock"});
-port.onMessage.addListener(function(msg) {
-  if (msg.question == "Who's there?")
-    port.postMessage({answer: "Madame"});
-  else if (msg.question == "Madame who?")
-    port.postMessage({answer: "Madame... Bovary"});
+		var port = chrome.runtime.connect({name: "exportToPage"});
+		port.postMessage({content: "Put back into email"});
+		port.onMessage.addListener(function(msg) {
+  		if (msg.textContent !== null) {
+		console.log("HIHI I want to update this thing!");
+		inputBox.innerHTML = msg.textContent;
+  	}
+});
 });

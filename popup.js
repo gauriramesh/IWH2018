@@ -24,3 +24,14 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		});
     });
 });
+
+chrome.runtime.onConnect.addListener(function(port) {
+	console.assert(port.name == "exportToPage");
+	console.log("knock knock");
+	port.onMessage.addListener(function(msg) {
+	  if (msg.content == "Put back into email")
+		document.getElementById("testButton").addEventListener("click", function () {
+			port.postMessage({textContent: $("#popupMessage").html().toString()});
+		});
+	});
+  });
