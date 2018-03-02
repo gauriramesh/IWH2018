@@ -1,7 +1,7 @@
 var sites = [
     {
         url: "google",
-        name: "Google" 
+        name: "Gmail" 
     },
     {
         url: "slack",
