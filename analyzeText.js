@@ -62,13 +62,14 @@ function textAnalyzer () {
 	*/
 	self.acceptAllChanges = () => {
 		for(let i = 0; i < self.foundWordReplacements.length; i++){
-			let element = document.getElementById("warningId" + i)
-			if(element !== null){
-				let innerText = element.textContent;
-				let replace = self.foundWordReplacements[parseInt(element.id.replace("warningId", ""))]
-				element.innerHTML = self.processCapitalization(replace, innerText);
-				element.classList.remove("warning");
-				element.removeAttribute("title");
+			let element = $("#warningId" + i);
+			if(element.length !== 0){
+				let innerText = element.text();
+				let replace = self.foundWordReplacements[parseInt(element.attr('id').replace("warningId", ""))]
+				element.html(self.processCapitalization(replace, innerText));
+				element.removeClass("warning");
+				element.removeAttr("title");
+				element.removeAttr("contenteditable");
 			}			 
 		}
 	}
@@ -81,17 +82,18 @@ function textAnalyzer () {
 			let tooltip = WORDS.words[self.keywords.indexOf(self.foundWords[i].toLowerCase())].message;
 			$("#warningId" + i).attr('title', tooltip);
             
-            let element = document.getElementById("warningId" + i);
-			element.addEventListener("dblclick", trackAcceptChange);
+            let element = $("#warningId" + i);
+			element.on("dblclick", trackAcceptChange);
             
-            element.addEventListener("dblclick", () => {
-				let replace = self.foundWordReplacements[parseInt(element.id.replace("warningId", ""))];
-				let innerText = element.textContent;
-				element.innerHTML = self.processCapitalization(replace, innerText);
-				element.classList.remove("warning");
-				element.removeAttribute("title");
+            element.on("dblclick", () => {
+				let innerText = element.text();
+				let replace = self.foundWordReplacements[parseInt(element.attr('id').replace("warningId", ""))]
+				element.html(self.processCapitalization(replace, innerText));
+				element.removeClass("warning");
+				element.removeAttr("title");
+				element.removeAttr("contenteditable");
 			});
 		}
-		document.getElementById("allChange").addEventListener("click", self.acceptAllChanges);
+		$("#allChange").on("click", self.acceptAllChanges);
 	}
 }
