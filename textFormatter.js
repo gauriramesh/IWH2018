@@ -46,7 +46,7 @@ function textFormatter () {
 	* Doesn't remove tags specified to be excluded in exclusions
 	*/
 	self.removeCode = (str, exclusions) => {
-		if(exclusions == null ){
+		if(exclusions == null){
 			return str.replace(/<[^>]*>/g, "");
 		}
 		const pattern = "<(?!" + exclusions.join(")[^>]*>|<(?!") + ")[^>]*>";
