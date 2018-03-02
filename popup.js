@@ -4,6 +4,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		if(response == undefined || !response.showButtons) {
 			$("#allChange").hide();
 			$("#copyBtn").hide();
+            $("#exportBtn").hide();
 		}
 		
 		if(response == undefined) {
