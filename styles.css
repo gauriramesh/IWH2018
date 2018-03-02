@@ -6,7 +6,8 @@
     min-width: 500px;
     max-width: 500px;
     min-height: 350px;
-    overflow:auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
     outline: 0px solid transparent;
   }
   .full{
