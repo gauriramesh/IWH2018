@@ -1,8 +1,10 @@
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+	var currentTab = tabs[0].url;
     chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {	
 		if(response == undefined || !response.showButtons) {
 			$("#allChange").hide();
 			$("#copyBtn").hide();
+            $("#exportBtn").hide();
 		}
 		
 		if(response == undefined) {
@@ -12,6 +14,8 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		
 		let analyzer = new textAnalyzer();
 		
+		getCurrentWebsite(currentTab);
+
 		let toAnalyze = prepareForDisplay(response.messageText);
 		
 		$("#popupMessage").html(analyzer.analyze(toAnalyze));
@@ -24,3 +28,14 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		});
     });
 });
+
+chrome.runtime.onConnect.addListener(function(port) {
+	console.assert(port.name == "exportToPage");
+	console.log("knock knock");
+	port.onMessage.addListener(function(msg) {
+	  if (msg.content == "Put back into email")
+		document.getElementById("exportBtn").addEventListener("click", function () {
+			port.postMessage({textContent: prepareForDisplay($("#popupMessage").html().toString())});
+		});
+	});
+  });
