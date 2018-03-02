@@ -10,17 +10,16 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 			return;
 		}
 		
-		let formatter = new textFormatter();
 		let analyzer = new textAnalyzer();
 		
-		let toAnalyze = formatter.prepareForDisplay(response.messageText);
+		let toAnalyze = prepareForDisplay(response.messageText);
 		
 		$("#popupMessage").html(analyzer.analyze(toAnalyze));
 		analyzer.registerEventListeners();
 		
 		new Clipboard('#copyBtn', {
 			text: function(trigger) {
-				return formatter.prepareForCopy($("#popupMessage").html().toString());
+				return prepareForCopy($("#popupMessage").html().toString());
 			}
 		});
     });

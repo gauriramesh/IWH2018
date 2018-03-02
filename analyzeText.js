@@ -64,11 +64,13 @@ function textAnalyzer () {
 	self.acceptAllChanges = () => {
 		for(let i = 0; i < self.foundWordReplacements.length; i++){
 			let element = document.getElementById("warningId" + i)
-			let innerText = element.textContent;
-			let replace = self.foundWordReplacements[parseInt(element.id.replace("warningId", ""))]
-			element.innerHTML = self.processCapitalization(replace, innerText);
-			element.classList.remove("warning");
-			element.removeAttribute("title"); 
+			if(element !== null){
+				let innerText = element.textContent;
+				let replace = self.foundWordReplacements[parseInt(element.id.replace("warningId", ""))]
+				element.innerHTML = self.processCapitalization(replace, innerText);
+				element.classList.remove("warning");
+				element.removeAttribute("title");
+			}			 
 		}
 	}
 	
