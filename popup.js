@@ -1,4 +1,5 @@
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+	console.log(tabs[0].url);
     chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {	
 		if(response == undefined || !response.showButtons) {
 			$("#allChange").hide();

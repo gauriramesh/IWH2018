@@ -17,7 +17,6 @@ chrome.runtime.onMessage.addListener(
 		port.postMessage({content: "Put back into email"});
 		port.onMessage.addListener(function(msg) {
   		if (msg.textContent !== null) {
-		console.log("HIHI I want to update this thing!");
 		inputBox.innerHTML = msg.textContent;
   	}
 });
