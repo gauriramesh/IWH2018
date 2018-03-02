@@ -63,7 +63,7 @@ function textAnalyzer () {
 	self.acceptAllChanges = () => {
 		for(let i = 0; i < self.foundWordReplacements.length; i++){
 			let element = $("#warningId" + i);
-			if(element !== null){
+			if(element.length !== 0){
 				let innerText = element.text();
 				let replace = self.foundWordReplacements[parseInt(element.attr('id').replace("warningId", ""))]
 				element.html(self.processCapitalization(replace, innerText));
