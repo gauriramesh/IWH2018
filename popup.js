@@ -1,6 +1,5 @@
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 	var currentTab = tabs[0].url;
-	console.log(currentTab);
     chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {	
 		if(response == undefined || !response.showButtons) {
 			$("#allChange").hide();
@@ -15,7 +14,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		
 		let analyzer = new textAnalyzer();
 		
-		getCurrentWebsite();
+		getCurrentWebsite(currentTab);
 
 		let toAnalyze = prepareForDisplay(response.messageText);
 		

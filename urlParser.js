@@ -25,11 +25,11 @@ var sites = [
     }
 ]
 
-getCurrentWebsite = () => {
+getCurrentWebsite = (currentTab) => {
     for(let i = 0; i < sites.length; i++) {
         if(currentTab.includes(sites[i].url)) {
             let siteName = sites[i].name;
-            document.getElementById("#exportBtn").innerHTML(`Export to ${siteName}`);
+            document.getElementById("exportBtn").innerHTML=`Export to ${siteName}`;
             break;
         }
     }
