@@ -25,9 +25,12 @@ registerKeywordListeners = (keyReplacements) => {
         let km = keywordMatches;
         let tooltip = WORDS.words[kw.indexOf(km[x].toLowerCase())].message;
         $("#warningId"+x).attr('title', tooltip);
+        
         document.getElementById("warningId"+x).addEventListener("dblclick", trackAcceptChange);
         document.getElementById("warningId"+x).addEventListener("dblclick", function(){
-            this.innerHTML=keyReplacements[parseInt(this.id.replace("warningId", ""))];
+            let replace = keyReplacements[parseInt(this.id.replace("warningId", ""))];
+            let innerText = this.textContent;
+            this.innerHTML = processCapitalization(replace, innerText);
             this.classList.remove("warning");
             this.removeAttribute("title");
         });
@@ -41,6 +44,14 @@ function prepareForCopy(str){
 
 function prepareForDisplay(str){
 return removeBeginningBr(formatLineBreaks(str, "<br>", ["br"]));
+}
+
+//Preserves original first letter capitalization
+processCapitalization = (replace, innerText) => {
+    if(innerText.charAt(0) === innerText.charAt(0).toUpperCase()) {
+        replace = replace.charAt(0).toUpperCase() + replace.slice(1);
+    }
+    return replace;
 }
 
 /**
