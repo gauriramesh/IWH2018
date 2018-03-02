@@ -51,7 +51,7 @@ function textAnalyzer () {
         self.foundWords.forEach((matchedWord) => {
                 //Adds the warning css class to all instances of a keyword
                 let id = "warningId" + count;
-                message = message.replace(new RegExp("\\b" + matchedWord + "(?!</span>)\\b", "i"), `<span id= "${id}" contenteditable="false" class="warning">${matchedWord}</span>`);
+                message = message.replace(new RegExp("\\b" + matchedWord + "(?!</span>)\\b", "i"), `<span id="${id}" contenteditable="false" class="warning">${matchedWord}</span>`);
                 count++;
         });		
 		return message;
