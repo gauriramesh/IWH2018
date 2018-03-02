@@ -9,13 +9,18 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 			$("#popupMessage").html("Rosie is compatible with Gmail, Outlook, Slack, LinkedIn, Yahoo, and GroupMe.");
 			return;
 		}
-		$("#popupMessage").html(prepareForDisplay(response.messageText));
-		var replacements = keywordMatching();
-		registerKeywordListeners(replacements);
+		
+		let formatter = new textFormatter();
+		let analyzer = new textAnalyzer();
+		
+		let toAnalyze = formatter.prepareForDisplay(response.messageText);
+		
+		$("#popupMessage").html(analyzer.analyze(toAnalyze));
+		analyzer.registerEventListeners();
 		
 		new Clipboard('#copyBtn', {
 			text: function(trigger){
-				return prepareForCopy($("#popupMessage").html().toString());
+				return formatter.prepareForCopy($("#popupMessage").html().toString());
 			}
 		});
     });
