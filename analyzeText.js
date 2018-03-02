@@ -53,8 +53,7 @@ function textAnalyzer () {
                 let id = "warningId" + count;
                 message = message.replace(new RegExp("\\b" + matchedWord + "(?!</span>)\\b", "i"), `<span id= "${id}" contenteditable="false" class="warning">${matchedWord}</span>`);
                 count++;
-        });
-		
+        });		
 		return message;
 	}
 	

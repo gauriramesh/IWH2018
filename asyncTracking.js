@@ -15,5 +15,5 @@ _gaq.push(['_trackPageview']);
 })();
 
 function trackAcceptChange(e) {
-    _gaq.push(['_trackEvent', e.target.id, 'Accepted a Change']);
+    _gaq.push(['_trackEvent', e.target.id, e.target.textContent]);
 }
