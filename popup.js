@@ -31,7 +31,7 @@ chrome.runtime.onConnect.addListener(function(port) {
 	port.onMessage.addListener(function(msg) {
 	  if (msg.content == "Put back into email")
 		document.getElementById("testButton").addEventListener("click", function () {
-			port.postMessage({textContent: $("#popupMessage").html().toString()});
+			port.postMessage({textContent: prepareForDisplay($("#popupMessage").html().toString())});
 		});
 	});
   });
