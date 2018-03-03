@@ -124,9 +124,3 @@ QUnit.test('Test prepareForDisplay', (assert) => {
 	
 	assert.deepEqual(actual, expected);
 });
-
-
-
-
-
-
