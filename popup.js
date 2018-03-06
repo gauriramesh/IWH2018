@@ -9,7 +9,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 		}
 		
 		if(response == undefined) {
-			$("#popupMessage").html("Rosie is compatible with Gmail, Outlook, Slack, LinkedIn, Yahoo, and GroupMe.");
+			$("#popupMessage").html('Rosie is compatible with Gmail, Outlook, Slack, LinkedIn, Yahoo, and GroupMe.<br><br>Visit <a href="https://rosiesays.github.io/about/" target="_blank">rosiesays.github.io/about/</a> to learn more about Rosie!');
 			return;
 		}
 		
