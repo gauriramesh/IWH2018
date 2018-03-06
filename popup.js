@@ -5,6 +5,7 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 			$("#allChange").hide();
 			$("#copyBtn").hide();
             $("#exportBtn").hide();
+			$("#popupMessage").removeAttr("contenteditable");
 		}
 		
 		if(response == undefined) {
